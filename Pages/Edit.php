@@ -1,6 +1,6 @@
 <?php
 
-    namespace IdnoPlugins\Listen\Pages {
+    namespace IdnoPlugins\Read\Pages {
 
         use Idno\Core\Autosave;
 
@@ -12,20 +12,20 @@
 
                 // Are we loading an entity?
                 if (!empty($this->arguments)) {
-                    $object = \IdnoPlugins\Listen\Listen::getByID($this->arguments[0]);
+                    $object = \IdnoPlugins\Read\Read::getByID($this->arguments[0]);
                 } else {
-                    $object = new \IdnoPlugins\Listen\Listen();
+                    $object = new \IdnoPlugins\Read\Read();
                 }
 
                 $t = \Idno\Core\site()->template();
                 $body = $t->__(array(
                     'object' => $object
-                ))->draw('entity/Listen/edit');
+                ))->draw('entity/Read/edit');
 
                 if (empty($vars['object']->_id)) {
-                    $title = 'What is that podcast or groove?';
+                    $title = 'What is ticklign your literary fancy?';
                 } else {
-                    $title = 'Edit what you listend to';
+                    $title = 'Edit what you read';
                 }
 
                 if (!empty($this->xhr)) {
@@ -40,14 +40,14 @@
 
                 $new = false;
                 if (!empty($this->arguments)) {
-                    $object = \IdnoPlugins\Listen\Listen::getByID($this->arguments[0]);
+                    $object = \IdnoPlugins\Read\Read::getByID($this->arguments[0]);
                 }
                 if (empty($object)) {
-                    $object = new \IdnoPlugins\Listen\Listen();
+                    $object = new \IdnoPlugins\Read\Read();
                 }
 
                 if ($object->saveDataFromInput($this)) {
-                    (new \Idno\Core\Autosave())->clearContext('Listen');
+                    (new \Idno\Core\Autosave())->clearContext('Read');
                     $forward = $this->getInput('forward-to', $object->getDisplayURL());
                     $this->forward($forward);
                 }
