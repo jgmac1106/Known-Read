@@ -5,27 +5,27 @@
     if (!empty($vars['object']->body)) {
         $body = $vars['object']->body;
     } else {
-        $body = $autosave->getValue('listen', 'bodyautosave');
+        $body = $autosave->getValue('read', 'bodyautosave');
     }
     if (!empty($vars['object']->title)) {
         $title = $vars['object']->title;
     } else {
-        $title = $autosave->getValue('listen', 'title');
+        $title = $autosave->getValue('read', 'title');
     }
-    if (!empty($vars['object']->listenauthor)) {
-        $listenauthor = $vars['object']->listenauthor;
+    if (!empty($vars['object']->readauthor)) {
+        $listenauthor = $vars['object']->readauthor;
     } else {
-        $listenauthor = $autosave->getValue('listen', 'listenauthor');
+        $listenauthor = $autosave->getValue('read', 'readauthor');
     }
-    if (!empty($vars['object']->listenType)) {
-        $listenType = $vars['object']->listenType;
+    if (!empty($vars['object']->readType)) {
+        $listenType = $vars['object']->readType;
     } else {
-        $listenType = $autosave->getValue('listen', 'listenType');
+        $listenType = $autosave->getValue('read', 'readType');
     }
     if (!empty($vars['object']->mediaURL)) {
         $mediaURL = $vars['object']->mediaURL;
     } else {
-        $mediaURL = $autosave->getValue('listen', 'mediaURL');
+        $mediaURL = $autosave->getValue('read', 'mediaURL');
     }
     if (!empty($vars['object'])) {
         $object = $vars['object'];
@@ -48,13 +48,13 @@
                     if (empty($vars['object']->_id)) {
 
                         ?>
-                        <h4>What is that song or podcast?</h4>
+                        <h4>What is tickling your literary fancy?</h4>
                     <?php
 
                     } else {
 
                         ?>
-                        <h4>Edit what you listened to</h4>
+                        <h4>Edit what you read</h4>
                     <?php
 
                     }
@@ -87,34 +87,35 @@
                 <div class="content-form">
 
                     <style>
-                        .listenType-block {
+                        .readType-block {
                             margin-bottom: 1em;
                         }
                     </style>
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" placeholder="The title of the song, podcast, or album" value="<?= htmlspecialchars($title) ?>" class="form-control"/>                    
+                    <input type="text" name="title" id="title" placeholder="The title of what your read, reading, or want to read" value="<?= htmlspecialchars($title) ?>" class="form-control"/>                    
                     
                     <label for="title">Media Link</label>
-                    <input type="text" name="mediaURL" id="mediaURL" placeholder="Link to song, YouTube, or podcast" value="<?= htmlspecialchars($mediaURL) ?>" class="form-control"/>                    
+                    <input type="text" name="mediaURL" id="mediaURL" placeholder="Link to book, website, or audiobook" value="<?= htmlspecialchars($mediaURL) ?>" class="form-control"/>                    
                     
-                    <!-- styled listen type -->
-                    <label for="listenType">Song or Podcast</label>
-                    <div class="listenType-block">
-                        <input type="hidden" name="listenType" id="listenType-id" value="<?= $listenType ?>">
-                        <div id="listenType" class="listenType">
+                    <!-- styled read type -->
+                    <label for="readType">What's the medium?</label>
+                    <div class="readType-block">
+                        <input type="hidden" name="readType" id="readType-id" value="<?= $readType ?>">
+                        <div id="readType" class="readType">
                             <div class="btn-group">
-                                <a class="btn dropdown-toggle listenType" data-toggle="dropdown" href="#" id="listenType-button" aria-expanded="false">
-                                    <i class="fa fa-volume-up"></i> Song <span class="caret"></span>
+                                <a class="btn dropdown-toggle readType" data-toggle="dropdown" href="#" id="readType-button" aria-expanded="false">
+                                    <i class="fa fa-book"></i> Book <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" data-listenType="tv" class="listenType-option"><i class="fa fa-tv"></i>song</a></li>
-                    <li><a href="#" data-listenType="video" class="listenType-option"><i class="fa fa-rss"></i>podcast</a></li>
+                                    <li><a href="#" data-readType="Website" class="readType-option"><i class="fa fa-rss"></i>website</a></li>
+                    <li><a href="#" data-listenType="audiobook" class="readType-option"><i class="fa fa-volume-up"></i>audiobook</a></li>
+                                    <li><a href="#" data-listenType="journal" class="readType-option"><i class="fa fa-file-text-o"></i>Article or Journal</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <style>
-                        a.listenType {
+                        a.readType {
                             background-color: #fff;
                             background-image: none;
                             border: 1px solid #cccccc;
@@ -123,32 +124,32 @@
                             color: #555555;
                         }
 
-                        .listenType .caret {
+                        .readType .caret {
                                 border-top: 4px solid #555;
                         }
                     </style>
                     <script>
                         $(document).ready(function () {
-                            $('.listenType-option').each(function () {
-                                if ($(this).data('listenType') == $('#listenType-id').val()) {
-                                    $('#listenType-button').html($(this).html() + ' <span class="caret"></span>');
+                            $('.readType-option').each(function () {
+                                if ($(this).data('readType') == $('#readType-id').val()) {
+                                    $('#readType-button').html($(this).html() + ' <span class="caret"></span>');
                                 }
                             })
                         });
-                        $('.listenType-option').on('click', function () {
-                            $('#listenType-id').val($(this).data('listenType'));
-                            $('#listenType-button').html($(this).html() + ' <span class="caret"></span>');
-                            $('#listenType-button').click();
+                        $('.readType-option').on('click', function () {
+                            $('#readType-id').val($(this).data('readType'));
+                            $('#readType-button').html($(this).html() + ' <span class="caret"></span>');
+                            $('#readType-button').click();
                             return false;
                         });
                        
-                        $('#listenType-id').on('change', function () {
+                        $('#readType-id').on('change', function () {
                         });
                     </script>
                     <!-- end styled watch type -->
                      
-                    <label for="listenauthor">Artist</label>
-                    <input type="text" name="listenauthor" id="listenauthor" placeholder="Who is the artist?" value="<?= htmlspecialchars($listenauthor) ?>" class="form-control"/>                    
+                    <label for="readauthor">Author</label>
+                    <input type="text" name="readauthor" id="readauthor" placeholder="Who is the author?" value="<?= htmlspecialchars($readauthor) ?>" class="form-control"/>                    
                 </div>
                 
                 <label for="body">Summary</label>
@@ -167,7 +168,7 @@
 
                 <p class="button-bar ">
                     
-                    <?= \Idno\Core\site()->actions()->signForm('/listen/edit') ?>
+                    <?= \Idno\Core\site()->actions()->signForm('/read/edit') ?>
                     <input type="button" class="btn btn-cancel" value="Cancel" onclick="tinymce.EditorManager.execCommand('mceRemoveEditor',false, 'body'); hideContentCreateForm();"/>
                     <input type="submit" class="btn btn-primary" value="Publish"/>
 
