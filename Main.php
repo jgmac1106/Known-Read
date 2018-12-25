@@ -1,16 +1,16 @@
 <?php
 
-    namespace IdnoPlugins\Listen {
+    namespace IdnoPlugins\Read {
 
         class Main extends \Idno\Common\Plugin {
 
             function registerPages() {
-                \Idno\Core\site()->addPageHandler('/listen/edit/?', '\IdnoPlugins\Listen\Pages\Edit');
-                \Idno\Core\site()->addPageHandler('/listen/edit/([A-Za-z0-9]+)/?', '\IdnoPlugins\Listen\Pages\Edit');
-                \Idno\Core\site()->addPageHandler('/listen/delete/([A-Za-z0-9]+)/?', '\IdnoPlugins\Listen\Pages\Delete');
-                \Idno\Core\site()->addPageHandler('/listen/([A-Za-z0-9]+)/.*', '\Idno\Pages\Entity\View');
+                \Idno\Core\site()->addPageHandler('/read/edit/?', '\IdnoPlugins\Read\Pages\Edit');
+                \Idno\Core\site()->addPageHandler('/read/edit/([A-Za-z0-9]+)/?', '\IdnoPlugins\Read\Pages\Edit');
+                \Idno\Core\site()->addPageHandler('/read/delete/([A-Za-z0-9]+)/?', '\IdnoPlugins\Read\Pages\Delete');
+                \Idno\Core\site()->addPageHandler('/read/([A-Za-z0-9]+)/.*', '\Idno\Pages\Entity\View');
                 
-                \Idno\Core\site()->addPageHandler('/listen/webhook/', '\IdnoPlugins\Listen\Pages\Endpoint', false);
+                \Idno\Core\site()->addPageHandler('/read/webhook/', '\IdnoPlugins\Read\Pages\Endpoint', false);
             }
 
             /**
@@ -28,10 +28,10 @@
                     $search = [];
                 }
 
-                if ($listens = listen::get($search,[],9999,0)) {
-                    foreach($listens as $listen) {
-                        if ($listen instanceof listen) {
-                            if ($attachments = $listen->getAttachments()) {
+                if ($reads = read::get($search,[],9999,0)) {
+                    foreach($reads as $read) {
+                        if ($read instanceof read) {
+                            if ($attachments = $read->getAttachments()) {
                                 foreach($attachments as $attachment) {
                                     $total += $attachment['length'];
                                 }
