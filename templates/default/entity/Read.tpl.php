@@ -40,7 +40,6 @@
                     ?>
                     <i class="fa fa-volume-up"></i>
                     <?php         
-                    }
                     } else if ($vars['object']->readType == 'journal') {
                     ?>
                     <i class="fa fa-newspaper-o"></i>
