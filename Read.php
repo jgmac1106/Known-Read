@@ -1,10 +1,10 @@
 <?php
 
-    namespace IdnoPlugins\Listen {
+    namespace IdnoPlugins\Read {
 
         use Idno\Core\Autosave;
 
-        class Listen extends \Idno\Common\Entity
+        class Read extends \Idno\Common\Entity
         {
 
             function getTitle()
@@ -21,16 +21,16 @@
                 return '';
             }
 
-            function getlistenauthor()
+            function getreadauthor()
             {
-                if (!empty($this->listenauthor)) return $this->listenauthor;
+                if (!empty($this->readauthor)) return $this->readauthor;
 
                 return '';
             }
 
-            function getlistenType()
+            function getreadType()
             {
-                if (!empty($this->listenType)) return $this->listenType;
+                if (!empty($this->readType)) return $this->readType;
 
                 return '';
             }
@@ -55,7 +55,7 @@
                 }
 
                 if (!$this->getSlug() && ($this->getID())) {
-                    return \Idno\Core\site()->config()->url . 'listen/' . $this->getID() . '/' . $this->getPrettyURLTitle();
+                    return \Idno\Core\site()->config()->url . 'read/' . $this->getID() . '/' . $this->getPrettyURLTitle();
                 } else {
                     return parent::getURL();
                 }
@@ -66,19 +66,19 @@
             {
                 return array(
                     'type' => 'entry',
-                    'listen-type' => $this->getlistenType(),
+                    'read-type' => $this->getreadType(),
                     'media-url' => $this->getMediaURL(),
-                    'listenauthor' => $this->getlistenauthor()
+                    'readauthor' => $this->getreadauthor()
                 );
             }
 
             /**
-             * listen objects have type 'listen'
-             * @return 'listen'
+             * read objects have type 'read'
+             * @return 'read'
              */
             function getActivityStreamsObjectType()
             {
-                return 'listen';
+                return 'read';
             }
 
             function saveDataFromInput()
@@ -94,8 +94,8 @@
 
                     $this->body            = $body;
                     $this->title           = \Idno\Core\site()->currentPage()->getInput('title');
-                    $this->listenauthor          = \Idno\Core\site()->currentPage()->getInput('listenauthor');
-                    $this->listenType       = \Idno\Core\site()->currentPage()->getInput('listenType');
+                    $this->readauthor          = \Idno\Core\site()->currentPage()->getInput('readauthor');
+                    $this->readType       = \Idno\Core\site()->currentPage()->getInput('readType');
                     $this->mediaURL        = \Idno\Core\site()->currentPage()->getInput('mediaURL');
                     $access                = \Idno\Core\site()->currentPage()->getInput('access');
                     $this->setAccess($access);
@@ -153,7 +153,7 @@
                     if ($this->save($new)) {
 
                         $autosave = new Autosave();
-                        $autosave->clearContext('listen');
+                        $autosave->clearContext('read');
 
                         \Idno\Core\Webmention::pingMentions($this->getURL(), \Idno\Core\site()->template()->parseURLs($this->getTitle() . ' ' . $this->getDescription()));
 
