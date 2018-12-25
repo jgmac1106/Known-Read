@@ -1,6 +1,6 @@
-<article class="p-listen-of">
+<article class="p-read-of">
             <h2 style="display: none" >
-               Listen <?= htmlentities(strip_tags($vars['object']->getTitle()), ENT_QUOTES, 'UTF-8'); ?>
+               Read <?= htmlentities(strip_tags($vars['object']->getTitle()), ENT_QUOTES, 'UTF-8'); ?>
             </h2>
             
             <div class="p-item h-product">                    
@@ -28,13 +28,22 @@
                 ?>
                 <h2>
                     <?php
-                    if ($vars['object']->listenType == 'song') {
+                    if ($vars['object']->readType == 'book') {
                     ?>
-                    <i class="fa fa-volume-up"></i>
+                    <i class="fa fa-book"></i>
                     <?php
-                    } else if ($vars['object']->listenType == 'podcast') {
+                    } else if ($vars['object']->readType == 'website') {
                     ?>
                     <i class="fa fa-rss"></i>
+                    <?php
+                    } else if ($vars['object']->readType == 'audiobook') {
+                    ?>
+                    <i class="fa fa-volume-up"></i>
+                    <?php         
+                    }
+                    } else if ($vars['object']->readType == 'journal') {
+                    ?>
+                    <i class="fa fa-newspaper-o"></i>
                     <?php
                     }
                     if (empty($vars['object']->getMediaURL())) {
@@ -53,9 +62,9 @@
                 <?= $this->__(['value' => $vars['object']->body, 'object' => $vars['object']])->draw('forms/output/richtext'); ?>
 
                 <?php
-                if (!empty($vars['object']->getlistenauthor())) {
+                if (!empty($vars['object']->getreadauthor())) {
                 ?>
-                <p style="font-style: italic; text-align: right;">By  <?= $vars['object']->getlistenauthor() ?></p>
+                <p style="font-style: italic; text-align: right;">By  <?= $vars['object']->getreadauthor() ?></p>
                 <?php
                 }
                 ?>                
