@@ -13,14 +13,14 @@
         $title = $autosave->getValue('read', 'title');
     }
     if (!empty($vars['object']->readauthor)) {
-        $listenauthor = $vars['object']->readauthor;
+        $readauthor = $vars['object']->readauthor;
     } else {
-        $listenauthor = $autosave->getValue('read', 'readauthor');
+        $readauthor = $autosave->getValue('read', 'readauthor');
     }
     if (!empty($vars['object']->readType)) {
-        $listenType = $vars['object']->readType;
+        $readType = $vars['object']->readType;
     } else {
-        $listenType = $autosave->getValue('read', 'readType');
+        $readType = $autosave->getValue('read', 'readType');
     }
     if (!empty($vars['object']->mediaURL)) {
         $mediaURL = $vars['object']->mediaURL;
