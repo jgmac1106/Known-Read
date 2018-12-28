@@ -19,7 +19,7 @@
                 $t = \Idno\Core\site()->template();
                 $body = $t->__(array(
                     'object' => $object
-                ))->draw('entity/Listen/delete');
+                ))->draw('entity/Read/delete');
 
                 if (!empty($this->xhr)) {
                     echo $body;
