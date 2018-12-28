@@ -47,7 +47,7 @@
                     }
                     if (empty($vars['object']->getMediaURL())) {
                     ?>
-                    Listen <span class="p-name"><?= htmlentities(strip_tags($vars['object']->getTitle()), ENT_QUOTES, 'UTF-8'); ?></span>
+                    Read <span class="p-name"><?= htmlentities(strip_tags($vars['object']->getTitle()), ENT_QUOTES, 'UTF-8'); ?></span>
                     <?php
                     } else {
                     ?>
